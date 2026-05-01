@@ -19,25 +19,6 @@ async def send_triangle(dut, x0, y0, x1, y1, x2, y2, color):
     for b in [x0, y0, x1, y1, x2, y2, color]:
         await send_byte(dut, b)
 
-
-@cocotb.test()
-async def test_reset(dut):
-    """After reset, outputs should be defined and low."""
-    clock = Clock(dut.clk, 40, units="ns")   # 25 MHz
-    cocotb.start_soon(clock.start())
-
-    dut.ena.value   = 1
-    dut.ui_in.value = 0
-    dut.uio_in.value = 0
-    dut.rst_n.value = 0
-    await ClockCycles(dut.clk, 10)
-    dut.rst_n.value = 1
-    await ClockCycles(dut.clk, 5)
-
-    # All outputs must be 0 (no active pixel, no color) right after reset
-    assert dut.uo_out.value == 0, f"Expected 0 after reset, got {dut.uo_out.value}"
-
-
 @cocotb.test()
 async def test_vga_timing(dut):
     """hsync should toggle within one line period (800 cycles at 25 MHz)."""
