@@ -46,3 +46,4 @@ jobs:
             test/tb.fst
             test/results.xml
             test/output/*
+
