@@ -47,21 +47,21 @@ jobs:
   #     - uses: TinyTapeout/tt-gds-action/viewer@ttsky25b
 
 
-viewer:
-    needs: gds
-    runs-on: ubuntu-24.04
-    permissions:
-      pages: write      
-      id-token: write  
-    
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  viewer:
+      needs: gds
+      runs-on: ubuntu-24.04
+      permissions:
+        pages: write      
+        id-token: write  
+      
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
 
-    steps:
-      - name: Generate Viewer Files
-        uses: TinyTapeout/tt-gds-action/viewer@ttsky25b
+      steps:
+        - name: Generate Viewer Files
+          uses: TinyTapeout/tt-gds-action/viewer@ttsky25b
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4
