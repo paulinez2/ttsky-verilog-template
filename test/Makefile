@@ -5,8 +5,9 @@
 SIM ?= icarus
 FST ?= -fst # Use more efficient FST format
 TOPLEVEL_LANG ?= verilog
+COMPILE_ARGS += -g2012
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v rangefinder.v
+PROJECT_SOURCES = tt_um_pzhu2.sv top.sv rasterizer.sv tri_setup.sv tri_receiver.sv vga_module.sv library.sv
 
 ifneq ($(GATES),yes)
 
